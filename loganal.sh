@@ -27,7 +27,7 @@ CRITICAL_EVENTS=$(grep -n 'CRITICAL' "$LOG_FILE")
     echo "Total Error Count: $ERROR_COUNT"
     echo "Total Warning Count: $WARNING_COUNT"
     echo -e "\nCritical Events (line numbers):"
-    
+
     if [ -z "$CRITICAL_EVENTS" ]; then
         echo "No critical events found."
     else
@@ -35,4 +35,4 @@ CRITICAL_EVENTS=$(grep -n 'CRITICAL' "$LOG_FILE")
     fi
 } > "$REPORT_FILE"
 
-echo "Analysis complete. Report saved to '$REPORT_FILE'."
+echo "Analysis complete. Report saved to '$(pwd)/$REPORT_FILE'."
