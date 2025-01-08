@@ -16,9 +16,9 @@ fi
 
 # Variables for the report
 REPORT_FILE="log_report_$(date +%F).txt"
-ERROR_COUNT=$(grep -c 'ERROR' "$LOG_FILE")
-WARNING_COUNT=$(grep -c 'WARNING' "$LOG_FILE")
-CRITICAL_EVENTS=$(grep -n 'CRITICAL' "$LOG_FILE")
+ERROR_COUNT=$(grep -ci 'ERROR' "$LOG_FILE")
+WARNING_COUNT=$(grep -ci 'WARNING' "$LOG_FILE")
+CRITICAL_EVENTS=$(grep -ni 'CRITICAL' "$LOG_FILE")
 
 # Generate the report
 {
