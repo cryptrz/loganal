@@ -72,4 +72,4 @@ Autorize Postfix to communicate
 
 - `mailx address@email.com` and then enter the Subject, content, CC, and check if you received the email
 
-When it works, you can use loganal.sh
+When it works, you can add the email address for the variable `MAIL_RECIPIENT` and use `loganal.sh`.
