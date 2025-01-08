@@ -15,6 +15,7 @@ if [ ! -f "$LOG_FILE" ]; then
 fi
 
 # Variables for the report
+MAIL_RECIPIENT="" # <- ADD EMAIL ADDRESS FOR GETTING THE REPORT BY EMAIL. SETUP POSTFIX AND BSD-MAILX FIRST
 REPORT_FILE="log_report_$(date +%F).txt"
 ERROR_COUNT=$(grep -ci 'ERROR' "$LOG_FILE")
 WARNING_COUNT=$(grep -ci 'WARNING' "$LOG_FILE")
@@ -52,5 +53,9 @@ CRIT_EVENTS_MONTH=$(journalctl -p crit --since="1 month ago")
     echo -e "\nCritical events since 1 month: \n$CRIT_EVENTS_MONTH"
     
 } > "$REPORT_FILE"
+
+if [ "$MAIL_RECIPIENT" != "" ]; then
+	mail -s "Log report from $(hostname) on $(date +%F)" "$MAIL_RECIPIENT" < $REPORT_FILE
+fi
 
 echo "Analysis complete. Report saved to '$(pwd)/$REPORT_FILE'."
