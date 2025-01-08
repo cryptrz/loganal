@@ -54,10 +54,10 @@ CRIT_EVENTS_MONTH=$(journalctl -p crit --since="1 month ago")
     
 } > "$REPORT_FILE"
 
-echo "Analysis complete. Report saved to '$(pwd)/$REPORT_FILE'."
+echo -e "Analysis completed. \nReport saved to '$(pwd)/$REPORT_FILE'."
 
 if [ "$MAIL_RECIPIENT" != "" ]; then
 	mail -s "Log report from $(hostname) on $(date +%F)" "$MAIL_RECIPIENT" < $REPORT_FILE
- 	echo "Email sent to $MAIL_RECIPIENT"
+ 	echo "Email sent to $MAIL_RECIPIENT."
 fi
 
