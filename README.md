@@ -67,8 +67,9 @@ Autorize Postfix to communicate
 - `sudo ufw allow "Postfix SMTPS"`
 - `sudo ufw allow "Postfix Submission"`
 
-Test
+Tests
 `telnet localhost 25`, you should see something like `220 hostname.domain ESMTP Postfix (Hostname)`
+
 `mailx address@email.com` and then enter the Subject, content, CC, and check if you received the email
 When it works, you can use loganal.sh
 
