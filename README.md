@@ -38,3 +38,4 @@ Jan 01 10:46:17 ubuntu sudo[4163]: pam_unix(sudo:auth): auth could not identify 
 Critical events since 1 month: 
 Jan 01 10:46:17 ubuntu sudo[4163]: pam_unix(sudo:auth): auth could not identify password for [johndoe]
 ```
+In addition to the chosen file, journalctl information is added
