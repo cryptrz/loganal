@@ -4,6 +4,12 @@ Example for syslog:
 ```
 bash loganal.sh /var/log/syslog
 ```
+or
+```
+chmod +x loganal.sh
+./loganal.sh /var/log/syslog
+```
+
 When the analysis is done, a message with the report's path appears, it's saved in the current folder: 
 ```
 Analysis complete. Report saved to '/home/johndoe/loganal/log_report_2025-01-01.txt'.
@@ -39,3 +45,31 @@ Critical events since 1 month:
 Jan 01 10:46:17 ubuntu sudo[4163]: pam_unix(sudo:auth): auth could not identify password for [johndoe]
 ```
 In addition to the chosen file, journalctl information is added
+
+## Requirements for the email feature (Optional)
+
+Install Postfix and bsd-mailx
+- `sudo apt install postfix bsd-mailx`
+    - Choose *internet site*
+    - Type a name
+
+Enable and start Postfix
+- `sudo systemctl enable postfix`
+- `sudo systemctl start postfix`
+
+Configure
+- `sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.old`
+- `sudo vim /etc/postfix/main.cf`
+     → Replace `inet_interfaces=all` with `inet_interfaces=loopback-only`
+
+Autorize Postfix to communicate
+- `sudo ufw allow Postfix`
+- `sudo ufw allow "Postfix SMTPS"`
+- `sudo ufw allow "Postfix Submission"`
+
+Test
+`telnet localhost 25`, you should see something like `220 hostname.domain ESMTP Postfix (Hostname)`
+`mailx address@email.com` and then enter the Subject, content, CC, and check if you received the email
+When it works, you can use loganal.sh
+
+- `mailx email@address.com`
