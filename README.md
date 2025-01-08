@@ -1,5 +1,6 @@
 **loganal** creates a quick report for a chosen log file.
 
+# Description
 Example for syslog:
 ```
 bash loganal.sh /var/log/syslog
@@ -68,7 +69,7 @@ Autorize Postfix to communicate
 - `sudo ufw allow "Postfix Submission"`
 
 ### Test the SMTP server
-- `telnet localhost 25`, you should see something like `220 hostname.domain ESMTP Postfix (Hostname)`
+- `telnet localhost 25`, you should see something like `220 hostname.isp.domain ESMTP Postfix (Hostname)`
 
 - `mailx address@email.com` and then enter the Subject, content, CC, and check if you received the email
 
