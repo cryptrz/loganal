@@ -15,7 +15,9 @@ if [ ! -f "$LOG_FILE" ]; then
 fi
 
 # Variables for the report
-MAIL_RECIPIENT="" # <- ADD EMAIL ADDRESS FOR GETTING THE REPORT BY EMAIL. SETUP POSTFIX AND BSD-MAILX FIRST
+##########################
+MAIL_RECIPIENT="" # <- ADD YOUR EMAIL ADDRESS BETWEEN THIS QUOTES FOR GETTING THE REPORT BY EMAIL. CHECK README.md
+##########################
 REPORT_FILE="log_report_$(date +%F).txt"
 ERROR_COUNT=$(grep -ci 'ERROR' "$LOG_FILE")
 WARNING_COUNT=$(grep -ci 'WARNING' "$LOG_FILE")
