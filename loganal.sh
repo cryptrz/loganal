@@ -21,7 +21,7 @@ fi
 
 # Variables for the report
 ##########################
-MAIL_RECIPIENT="fridel@protonmail.com" # <- ADD YOUR EMAIL ADDRESS BETWEEN THIS QUOTES FOR GETTING THE REPORT BY EMAIL. CHECK README.md
+MAIL_RECIPIENT="" # <- ADD YOUR EMAIL ADDRESS BETWEEN THIS QUOTES FOR GETTING THE REPORT BY EMAIL. CHECK README.md
 ##########################
 REPORT_FILE="log_report_$(date +%F_%H:%M:%S).txt"
 ERROR_COUNT=$(grep -ci 'ERROR' "$LOG_FILE")
