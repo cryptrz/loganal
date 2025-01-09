@@ -14,11 +14,16 @@ if [ ! -f "$LOG_FILE" ]; then
     exit 1
 fi
 
+# Check if reports directory exists
+if [ ! -d "Reports" ]; then
+	mkdir Reports
+fi
+
 # Variables for the report
 ##########################
 MAIL_RECIPIENT="" # <- ADD YOUR EMAIL ADDRESS BETWEEN THIS QUOTES FOR GETTING THE REPORT BY EMAIL. CHECK README.md
 ##########################
-REPORT_FILE="log_report_$(date +%F).txt"
+REPORT_FILE="log_report_$(date +%F_%H:%M:%S).txt"
 ERROR_COUNT=$(grep -ci 'ERROR' "$LOG_FILE")
 WARNING_COUNT=$(grep -ci 'WARNING' "$LOG_FILE")
 CRITICAL_EVENTS=$(grep -ni 'CRITICAL' "$LOG_FILE")
@@ -54,12 +59,11 @@ CRIT_EVENTS_MONTH=$(journalctl -p crit --since="1 month ago")
     echo -e "\nCritical events since 1 week: \n$CRIT_EVENTS_WEEK"
     echo -e "\nCritical events since 1 month: \n$CRIT_EVENTS_MONTH"
     
-} > "$REPORT_FILE"
+} > "Reports/$REPORT_FILE"
 
-echo -e "Analysis completed. \nReport saved to '$(pwd)/$REPORT_FILE'."
+echo -e "Analysis completed. \nReport saved to '$(pwd)/Reports/$REPORT_FILE'."
 
 if [ "$MAIL_RECIPIENT" != "" ]; then
 	mail -s "Log report from $(hostname) on $(date +%F)" "$MAIL_RECIPIENT" < $REPORT_FILE
  	echo "Email sent to $MAIL_RECIPIENT."
 fi
-
