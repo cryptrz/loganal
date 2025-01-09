@@ -21,7 +21,7 @@ fi
 
 # Variables for the report
 ##########################
-MAIL_RECIPIENT="" # <- ADD YOUR EMAIL ADDRESS BETWEEN THIS QUOTES FOR GETTING THE REPORT BY EMAIL. CHECK README.md
+MAIL_RECIPIENT="fridel@protonmail.com" # <- ADD YOUR EMAIL ADDRESS BETWEEN THIS QUOTES FOR GETTING THE REPORT BY EMAIL. CHECK README.md
 ##########################
 REPORT_FILE="log_report_$(date +%F_%H:%M:%S).txt"
 ERROR_COUNT=$(grep -ci 'ERROR' "$LOG_FILE")
@@ -64,6 +64,6 @@ CRIT_EVENTS_MONTH=$(journalctl -p crit --since="1 month ago")
 echo -e "Analysis completed. \nReport saved to '$(pwd)/Reports/$REPORT_FILE'."
 
 if [ "$MAIL_RECIPIENT" != "" ]; then
-	mail -s "Log report from $(hostname) on $(date +%F)" "$MAIL_RECIPIENT" < $REPORT_FILE
+	mail -s "Log report from $(hostname) on $(date +%F)" "$MAIL_RECIPIENT" < "Reports/$REPORT_FILE"
  	echo "Email sent to $MAIL_RECIPIENT."
 fi
